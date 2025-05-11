@@ -1,16 +1,14 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+dotenv.config();
 
-const URI =
-  "mongodb+srv://social:social@cluster0.gy3sw7d.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const URI = process.env.MONGO_URI;
 
 export const dataBaseConnection = async () => {
   try {
     await mongoose.connect(URI);
-    console.log("DATA BASE IS CONNECTED")
+    console.log("DATA BASE IS CONNECTED");
   } catch (error) {
-    console.log(error);
+    console.error("Mongoose connection error:", error);
   }
 };
-
-
- 
